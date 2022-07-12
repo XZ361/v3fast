@@ -4,12 +4,15 @@
   <Composition></Composition>
   <!-- teleport: ModelButton -->
   <ModelButton></ModelButton>
+  <!-- Emits Component option-->
+  <Emits @my-click="onClick"></Emits>
 </template>
 
 <script>
 // import { computed, onMounted, onUnmounted, reactive, ref, toRefs, watch } from 'vue'
 import Composition from './Composition.vue'
 import ModelButton from './ModelButton.vue'
+import Emits from './Emits.vue'
 
 export default {
   name: 'HelloWorld',
@@ -18,7 +21,13 @@ export default {
   },
   components:{
     Composition,
-    ModelButton
-  }
+    ModelButton,
+    Emits
+  },
+  methods: {
+    onClick() {
+      console.log('click me!');
+    }
+  },
 };
 </script>
