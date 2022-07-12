@@ -1,13 +1,13 @@
 <template>
   <h1>{{ msg }}</h1>
   <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
-  <p>{{data.counter}}</p>
+  <p>{{counter}}</p>
   <h3>{{msg2}}</h3>
-  <p>{{data.doubleCounter}}</p>
+  <p>{{doubleCounter}}</p>
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
+import { computed, onMounted, onUnmounted, reactive, ref, toRefs } from 'vue'
 
 export default {
   name: 'HelloWorld',
@@ -15,10 +15,11 @@ export default {
     msg: String
   },
   setup(){
-    const data = useCounter()
+    // 可以直接解析返回的ref对象，并在模板中直接使用
+    const {counter, doubleCounter} = useCounter()
     const msg2 = ref('hello msg2!')
 
-    return {data, msg2}
+    return {counter, doubleCounter, msg2}
   }
 };
 function useCounter() {
@@ -35,6 +36,7 @@ function useCounter() {
   onUnmounted(() => {
     clearInterval(timer)
   })
-  return data
+  return toRefs(data)     
+  // 将data中 的key转化成ref响应式数据
 }
 </script>
