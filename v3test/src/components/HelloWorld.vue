@@ -38,7 +38,7 @@ import ModelButton from './ModelButton.vue'
 import Emits from './Emits.vue'
 import VModelTest from './VModelTest.vue';
 import Functional from './Functional.vue'
-import { h } from 'vue';
+import { defineAsyncComponent, h } from 'vue';
 
 export default {
   name: 'HelloWorld',
@@ -51,7 +51,7 @@ export default {
     Emits,
     VModelTest,
     Functional,
-    AsyncComp: () => {import('./NextPage.vue')},
+    AsyncComp: defineAsyncComponent(() => import('./NextPage.vue')),
     RenderTest:{
       props: {
         counter: {
