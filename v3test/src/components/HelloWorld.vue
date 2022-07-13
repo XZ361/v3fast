@@ -26,6 +26,9 @@
 
   <!-- 函数式组件 -->
   <Functional level="3">这是一个动态h元素</Functional>
+
+  <!-- 异步组件 -->
+  <AsyncComp></AsyncComp>
 </template>
 
 <script>
@@ -48,6 +51,7 @@ export default {
     Emits,
     VModelTest,
     Functional,
+    AsyncComp: () => {import('./NextPage.vue')},
     RenderTest:{
       props: {
         counter: {
