@@ -11,6 +11,12 @@
 
   <!-- v-model的使用 -->
   <VModelTest v-model="counter"></VModelTest>
+  <!-- 等效于 -->
+  <!-- <VModelTest :modelValue="counter" @update:modelValue="counter=$event"></VModelTest> -->
+
+
+  <!-- render api的变化 -->
+  <RenderTest v-model:counter="counter"></RenderTest>
 </template>
 
 <script>
@@ -19,6 +25,7 @@ import Composition from './Composition.vue'
 import ModelButton from './ModelButton.vue'
 import Emits from './Emits.vue'
 import VModelTest from './VModelTest.vue';
+import { h } from 'vue';
 
 export default {
   name: 'HelloWorld',
@@ -30,6 +37,25 @@ export default {
     ModelButton,
     Emits,
     VModelTest,
+    RenderTest:{
+      props: {
+        counter: {
+          type: Number,
+          default: 0
+        },
+      },
+      render(){
+        const emit = this.$emit
+        const counter = this.counter
+        return h('div', [
+          h('div', {
+            onClick() {
+              emit('update:counter', counter+1)
+            }
+          }, `RenderTest: ${this.counter}`)
+        ])
+      }
+    }
   },
   data() {
     return {
