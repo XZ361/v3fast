@@ -8,6 +8,9 @@
   <Emits @my-click="onClick"></Emits>
   <!-- 实例方法定义组件 -->
   <comp></comp>
+
+  <!-- v-model的使用 -->
+  <VModelTest v-model="counter"></VModelTest>
 </template>
 
 <script>
@@ -15,6 +18,7 @@
 import Composition from './Composition.vue'
 import ModelButton from './ModelButton.vue'
 import Emits from './Emits.vue'
+import VModelTest from './VModelTest.vue';
 
 export default {
   name: 'HelloWorld',
@@ -24,7 +28,13 @@ export default {
   components:{
     Composition,
     ModelButton,
-    Emits
+    Emits,
+    VModelTest,
+  },
+  data() {
+    return {
+      counter: 1
+    }
   },
   methods: {
     onClick() {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Button @click="modelOpen = true">弹出一个全屏模态框</Button>
+        <button @click="modelOpen = true">弹出一个全屏模态框</button>
         <!-- teleport是一个系统内部的全局组件，可以直接使用 -->
         <teleport to="body">
             <div v-if="modelOpen" class="modal">
