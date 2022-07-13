@@ -7,4 +7,5 @@ vue3.0快速学习
 - Global internal apis重构为可做摇树优化
 - v-model使用的变化
 - 渲染函数api的变化
+- 函数式组件的使用变化
 

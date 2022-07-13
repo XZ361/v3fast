@@ -23,6 +23,9 @@
     <!-- 具名插槽 -->
     <template v-slot:content>content.....</template>
   </RenderTest>
+
+  <!-- 函数式组件 -->
+  <Functional level="3">这是一个动态h元素</Functional>
 </template>
 
 <script>
@@ -31,6 +34,7 @@ import Composition from './Composition.vue'
 import ModelButton from './ModelButton.vue'
 import Emits from './Emits.vue'
 import VModelTest from './VModelTest.vue';
+import Functional from './Functional.vue'
 import { h } from 'vue';
 
 export default {
@@ -43,6 +47,7 @@ export default {
     ModelButton,
     Emits,
     VModelTest,
+    Functional,
     RenderTest:{
       props: {
         counter: {
