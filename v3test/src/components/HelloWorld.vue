@@ -45,16 +45,15 @@ export default {
         },
       },
       render(){
-        const emit = this.$emit
-        const counter = this.counter
         return h('div', [
-          h('div', {
-            onClick() {
-              emit('update:counter', counter+1)
-            }
-          }, `RenderTest: ${this.counter}`)
+          h('div', {onClick: this.onClick }, `RenderTest: ${this.counter}`)
         ])
-      }
+      },
+      methods: {
+        onClick() {
+          this.$emit('update:counter', this.counter+1)
+        }
+      },
     }
   },
   data() {
