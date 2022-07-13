@@ -6,6 +6,8 @@
   <ModelButton></ModelButton>
   <!-- Emits Component option-->
   <Emits @my-click="onClick"></Emits>
+  <!-- 实例方法定义组件 -->
+  <comp></comp>
 </template>
 
 <script>
