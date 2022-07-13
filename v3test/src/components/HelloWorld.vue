@@ -16,7 +16,13 @@
 
 
   <!-- render api的变化 -->
-  <RenderTest v-model:counter="counter"></RenderTest>
+  <RenderTest v-model:counter="counter">
+    <!-- 插槽使用 -->
+    <!-- 默认插槽 -->
+    <template v-slot:default>title</template>
+    <!-- 具名插槽 -->
+    <template v-slot:content>content.....</template>
+  </RenderTest>
 </template>
 
 <script>
@@ -46,7 +52,11 @@ export default {
       },
       render(){
         return h('div', [
-          h('div', {onClick: this.onClick }, `RenderTest: ${this.counter}`)
+          h('div', {onClick: this.onClick }, [
+            `RenderTest: ${this.counter}\n`,
+            this.$slots.default(), //获取默认插槽内容
+            this.$slots.content()  //获取具名插槽的内容
+            ])
         ])
       },
       methods: {
