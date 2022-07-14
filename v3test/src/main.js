@@ -9,6 +9,13 @@ createApp(App)
       return h('div', 'i am comp')
     }
   })
+  .directive('highlight',
+    {
+      beforeMount: (el,binding,vnode) => {
+        el.style.background = binding.value
+      }
+    }
+  )
   .mount('#app')
 
 const nodeOps = {

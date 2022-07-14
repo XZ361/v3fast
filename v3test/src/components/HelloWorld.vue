@@ -29,6 +29,9 @@
 
   <!-- 异步组件 -->
   <AsyncComp></AsyncComp>
+
+  <!-- 自定义指令 -->
+  <p v-highlight="'pink'">highlight is text!!!</p>
 </template>
 
 <script>
