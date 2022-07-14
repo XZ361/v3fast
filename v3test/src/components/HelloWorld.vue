@@ -32,6 +32,8 @@
 
   <!-- 自定义指令 -->
   <p v-highlight="'pink'">highlight is text!!!</p>
+  <!-- 动画 -->
+  <TransitionTest></TransitionTest>
 </template>
 
 <script>
@@ -41,6 +43,7 @@ import ModelButton from './ModelButton.vue'
 import Emits from './Emits.vue'
 import VModelTest from './VModelTest.vue';
 import Functional from './Functional.vue'
+import TransitionTest from './TransitionTest.vue'
 import { defineAsyncComponent, h } from 'vue';
 
 export default {
@@ -54,6 +57,7 @@ export default {
     Emits,
     VModelTest,
     Functional,
+    TransitionTest,
     AsyncComp: defineAsyncComponent(() => import('./NextPage.vue')),
     RenderTest:{
       props: {
