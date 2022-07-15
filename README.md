@@ -13,4 +13,11 @@ vue3.0快速学习
 - 自定义指令api和组件保持一致
 - transiton类名变化
 - 被移除的方法和原方法的新使用方式
+- 实现一个todoList待办列表（具有crud）
+    - 新增(回车，按钮)
+    - 编辑（双击内容，enter/blur/esc）
+    - 删除 
+    - 过滤(all,active,complete)
+    - 完成状态（内容line-through）
+    - 本地缓存
 

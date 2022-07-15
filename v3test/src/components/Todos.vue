@@ -22,9 +22,9 @@
          class="edit" 
          v-todo-focus="todo === editedTodo" 
          v-model="todo.title" 
+         @keyup.enter="doneEdit(todo)" 
          @blur="doneEdit(todo)"
-         @keyup:enter="doneEdit(todo)" 
-         @keyup:escape="cancelEdit(todo)" 
+         @keyup.escape="cancelEdit(todo)" 
         />
       </li>
     </ul>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed } from 'vue'
+import { reactive, toRefs, computed, watchEffect } from 'vue'
 const filters = {
   all(todos){
     return todos
@@ -60,11 +60,24 @@ const filters = {
     return todos.filter((todo)=> todo.completed)
   }
 }
+const todoStorage = {
+  fetch(){
+    let todos = JSON.parse(localStorage.getItem('vue3-todos') || '[]')
+    // 第一次获取需要设置id
+    todos.forEach((todo,index)=>{
+      todo.id = index+1
+    })
+    return todos
+  },
+  save(todos){
+    localStorage.setItem('vue3-todos',JSON.stringify(todos))
+  }
+}
 export default {
   setup() {
     const state = reactive({
       newTodo: '',//新增
-      todos: [],//待办列表 
+      todos: todoStorage.fetch(),//待办列表 
       beforeEditCache: '', //缓存编辑前的title
       editedTodo: null, //正在编辑的todo 
       visibility: 'all',
@@ -95,6 +108,11 @@ export default {
       todo.title = state.beforeEditCache
       state.editedTodo = null  
     }
+    watchEffect(()=>{
+      // 副作用方法
+      // 用谁就watch谁
+      todoStorage.save(state.todos)
+    })
     return {
       ...toRefs(state),
       addTodo,
@@ -135,6 +153,6 @@ export default {
   border: 1px solid transparent;
 }
 .filters > span.slected{
-  border-color:rgb(10, 2, 2);
+  border-color:rgba(173, 47, 47, .2) ;
 }
 </style>
