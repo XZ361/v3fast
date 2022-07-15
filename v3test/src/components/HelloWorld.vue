@@ -34,6 +34,8 @@
   <p v-highlight="'pink'">highlight is text!!!</p>
   <!-- 动画 -->
   <TransitionTest></TransitionTest>
+  <!-- 事件的发送和监听 -->
+  <button @click="sendMsg">someEvent</button>
 </template>
 
 <script>
@@ -45,7 +47,9 @@ import VModelTest from './VModelTest.vue';
 import Functional from './Functional.vue'
 import TransitionTest from './TransitionTest.vue'
 import { defineAsyncComponent, h } from 'vue';
+import mitt from "mitt";
 
+export const emitter = mitt()
 export default {
   name: 'HelloWorld',
   props: {
@@ -78,7 +82,8 @@ export default {
       methods: {
         onClick() {
           this.$emit('update:counter', this.counter+1)
-        }
+        },
+        
       },
     }
   },
@@ -90,6 +95,9 @@ export default {
   methods: {
     onClick() {
       console.log('click me!');
+    }, 
+    sendMsg() {
+      emitter.emit('someEvent', 'this is message')
     }
   },
 };

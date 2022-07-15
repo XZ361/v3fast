@@ -5,11 +5,13 @@
 </template>
 
 <script>
-export default {
-    setup () {
-        
+import { emitter } from './HelloWorld.vue'
 
-        return {}
+export default {
+    mounted(){
+      emitter.on('someEvent',(msg)=>{
+      console.log(msg);
+      })
     }
 }
 </script>
