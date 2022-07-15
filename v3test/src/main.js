@@ -120,4 +120,4 @@ function createCanvasApp(App) {
   return app
 }
 
-createCanvasApp(CanvasApp).mount('#demo')
+// createCanvasApp(CanvasApp).mount('#demo')
