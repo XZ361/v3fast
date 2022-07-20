@@ -29,34 +29,12 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed, watchEffect } from 'vue'
+import { reactive, toRefs } from 'vue'
 import EditTodo from './EditTodo.vue'
 import TodoItem from './TodoItem.vue'
 import Filter from './Filter.vue'
-const filters = {
-  all(todos){
-    return todos
-  },
-  active(todos){
-    return todos.filter((todo)=> !todo.completed)
-  },
-  completed(todos){
-    return todos.filter((todo)=> todo.completed)
-  }
-}
-const todoStorage = {
-  fetch(){
-    let todos = JSON.parse(localStorage.getItem('vue3-todos') || '[]')
-    // 第一次获取需要设置id
-    todos.forEach((todo,index)=>{
-      todo.id = index+1
-    })
-    return todos
-  },
-  save(todos){
-    localStorage.setItem('vue3-todos',JSON.stringify(todos))
-  }
-}
+import { useTodos } from './useTodo'
+import useFilter from './useFilter'
 export default {
     components:{
       TodoItem,
@@ -64,42 +42,19 @@ export default {
       Filter
     },
     setup() {
-        const state = reactive({
-            newTodo: "",
-            todos: todoStorage.fetch(),            
-            editedTodo: null,
-            filterItems:[
-              {label:'All',value:'all'},
-              {label:'Active ',value:'active'},
-              {label:'Completed',value:'completed'},
-            ],
-            visibility: "all",
-            filterdTodos: computed(() => {
-                return filters[state.visibility](state.todos);
-            })
-        });
-        function addTodo() {
-            state.todos.push({
-                id: state.todos.length + 1,
-                title: state.newTodo,
-                completed: false
-            });
-            state.newTodo = ""; //将input置空 
-        }
-        function removeTodo(todo) {
-          // 找到todo的索引，然后删除当前ToDo
-          state.todos.splice(state.todos.indexOf(todo), 1);
-        }   
-        watchEffect(() => {
-            // 副作用方法
-            // 用谁就watch谁
-            todoStorage.save(state.todos);
-        });
-        return {
-            ...toRefs(state),
-            addTodo,
-            removeTodo,
-        };
+      const todoState = reactive({
+        newTodo: "",
+        editedTodo: null,
+      })
+      const {todos,addTodo,removeTodo} = useTodos(todoState)
+      const filterState = useFilter(todos)
+        
+      return {
+        ...toRefs(todoState),
+        ...toRefs(filterState),
+        addTodo,
+        removeTodo,
+      };
     },
     components: { EditTodo, TodoItem, Filter }
 }

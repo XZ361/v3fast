@@ -30,7 +30,7 @@ export default {
       type: Object,
       required:true
     },
-    editedTodo: Object
+    editedTodo: Object,
   },
   emits:['remove-todo','update:edited-todo'],
   setup(props,{emit}) {
