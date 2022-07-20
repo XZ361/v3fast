@@ -32,7 +32,7 @@
 
 <script>
 import { reactive, toRefs, watch } from 'vue'
-import {useRouter, useRoute} from 'vue-router'
+import {useRouter, useRoute, onBeforeRouteLeave} from 'vue-router'
 import EditTodo from './EditTodo.vue'
 import TodoItem from './TodoItem.vue'
 import Filter from './Filter.vue'
@@ -56,6 +56,13 @@ export default {
       const route = useRoute()
       watch(()=>route.query,query=>{
         console.log(query);
+      })
+      // 路由守卫
+      onBeforeRouteLeave((to,from) => {
+        const answer = window.confirm('are you leave?')
+        if(!answer){
+          return false
+        }
       })
       return {
         ...toRefs(todoState),
