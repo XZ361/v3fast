@@ -25,11 +25,14 @@
     <!-- 过滤 -->
     <Filter :items="filterItems" v-model="visibility"
     ></Filter>
+    <!-- 回退到看板 -->
+    <button @click="backToDash">返回</button>
   </div>
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue'
+import {useRouter} from 'vue-router'
 import EditTodo from './EditTodo.vue'
 import TodoItem from './TodoItem.vue'
 import Filter from './Filter.vue'
@@ -48,12 +51,15 @@ export default {
       })
       const {todos,addTodo,removeTodo} = useTodos(todoState)
       const filterState = useFilter(todos)
-        
+      const router = useRouter()
       return {
         ...toRefs(todoState),
         ...toRefs(filterState),
         addTodo,
         removeTodo,
+        backToDash(){
+          router.push('/')
+        }
       };
     },
     components: { EditTodo, TodoItem, Filter }

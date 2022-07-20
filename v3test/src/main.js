@@ -31,6 +31,7 @@ router.addRoute({
     }
   }
 })
+// composition api 结合
 createApp(App)
   .use(router)
   .component('comp', {
