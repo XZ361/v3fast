@@ -11,7 +11,7 @@ const filters = {
     }
 }
 
-export function useFilter(todos){
+export default function useFilter(todos){
     const filterState = reactive({
         filterItems: [
             { label: 'All', value: 'all' },

@@ -3,8 +3,19 @@ import App from './App.vue'
 import './index.css'
 import CanvasApp from './CanvasApp.vue'
 import EditTodo from './components/todos/EditTodo.vue'
+import Todos from './components/todos/Todos.vue'
+import Dashboard from './components/Dashboard.vue'
+import {createRouter, createWebHistory} from 'vue-router'
 
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {path: '/',component: Dashboard}, 
+    {path: '/todos',component: Todos}
+  ]
+})
 createApp(App)
+  .use(router)
   .component('comp', {
     render: () => {
       return h('div', 'i am comp')
