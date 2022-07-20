@@ -23,6 +23,14 @@ router.addRoute(
     component:()=>import('./components/About.vue')
   }
 )
+router.addRoute({
+  path: '/about/info',
+  component:{
+    render(){
+      return h('div','info page')
+    }
+  }
+})
 createApp(App)
   .use(router)
   .component('comp', {
