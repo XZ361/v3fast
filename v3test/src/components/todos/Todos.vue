@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
-import {useRouter} from 'vue-router'
+import { reactive, toRefs, watch } from 'vue'
+import {useRouter, useRoute} from 'vue-router'
 import EditTodo from './EditTodo.vue'
 import TodoItem from './TodoItem.vue'
 import Filter from './Filter.vue'
@@ -52,6 +52,11 @@ export default {
       const {todos,addTodo,removeTodo} = useTodos(todoState)
       const filterState = useFilter(todos)
       const router = useRouter()
+      // route是响应式对象，可以监控其变化
+      const route = useRoute()
+      watch(()=>route.query,query=>{
+        console.log(query);
+      })
       return {
         ...toRefs(todoState),
         ...toRefs(filterState),
