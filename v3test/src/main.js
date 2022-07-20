@@ -5,15 +5,24 @@ import CanvasApp from './CanvasApp.vue'
 import EditTodo from './components/todos/EditTodo.vue'
 import Todos from './components/todos/Todos.vue'
 import Dashboard from './components/Dashboard.vue'
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
-    {path: '/',component: Dashboard}, 
-    {path: '/todos',component: Todos}
+    {path: '/', component: Dashboard}, 
+    {path: '/todos', component: Todos}
   ]
 })
+
+// 特性：动态路由
+router.addRoute(
+  {
+    path:'/about',
+    name:'about',
+    component:()=>import('./components/About.vue')
+  }
+)
 createApp(App)
   .use(router)
   .component('comp', {
