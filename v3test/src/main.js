@@ -17,13 +17,13 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',name:'not-found',component:NotFound
     }
   ],
-  scrollBehavior(to,from,savePosition){
-    if(savePosition){
-      return savePosition
-    }else{
-      return {top:0}
-    }
-  }
+  // scrollBehavior(to,from,savePosition){
+  //   if(savePosition){
+  //     return savePosition
+  //   }else{
+  //     return {top:0}
+  //   }
+  // }
 })
 
 // 特性：动态路由
