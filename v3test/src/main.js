@@ -10,8 +10,8 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    {path: '/', component: Dashboard}, 
-    {path: '/todos', component: Todos}
+    {path: '/', name:'dashboard',component: Dashboard}, 
+    {path: '/todos',name:'todos', component: Todos}
   ]
 })
 
@@ -25,6 +25,7 @@ router.addRoute(
 )
 router.addRoute({
   path: '/about/info',
+  name:'info',
   component:{
     render(){
       return h('div','info page')
