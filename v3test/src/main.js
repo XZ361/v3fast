@@ -5,13 +5,17 @@ import CanvasApp from './CanvasApp.vue'
 import EditTodo from './components/todos/EditTodo.vue'
 import Todos from './components/todos/Todos.vue'
 import Dashboard from './components/Dashboard.vue'
-import {createRouter, createWebHashHistory} from 'vue-router'
+import NotFound from './components/NotFound.vue'
+import {createRouter, createWebHashHistory,createWebHistory} from 'vue-router'
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory('/base-directory'),
   routes: [
     {path: '/', name:'dashboard',component: Dashboard}, 
-    {path: '/todos',name:'todos', component: Todos}
+    {path: '/todos',name:'todos', component: Todos},
+    {
+      path: '/:pathMatch(.*)*',name:'not-found',component:NotFound
+    }
   ]
 })
 
