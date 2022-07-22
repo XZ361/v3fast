@@ -1,5 +1,6 @@
 <template>
-  <img alt="Vue logo" height="800" src="./assets/logo.png" />
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <p @click="$store.commit('add')">{{$store.state.count}}</p>
   <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" /> -->
   <!-- <Todos></Todos> -->
   <!-- vue-router4中keep-alive用法 -->

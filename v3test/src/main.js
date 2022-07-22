@@ -7,6 +7,7 @@ import Todos from './components/todos/Todos.vue'
 import Dashboard from './components/Dashboard.vue'
 import NotFound from './components/NotFound.vue'
 import {createRouter, createWebHashHistory,createWebHistory} from 'vue-router'
+import {createStore} from "vuex";
 
 const router = createRouter({
   history: createWebHistory('/base-directory'),
@@ -43,9 +44,23 @@ router.addRoute({
     }
   }
 })
+
+const store = createStore({
+  state(){
+    return{
+      count: 1 
+    }
+  },
+  mutations: {
+    add(state) {
+      state.count++
+    }
+  }
+})
 // composition api 结合
 createApp(App)
   .use(router)
+  .use(store)
   .component('comp', {
     render: () => {
       return h('div', 'i am comp')
