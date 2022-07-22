@@ -3,7 +3,7 @@
   <!-- 传统写法 -->
   <p @click="$store.commit('add')">{{$store.state.count}}</p>
   <!-- composition api 写法 -->
-  <p @click="add">{{state.count}}</p>
+  <p @click="add">{{count}}</p>
   <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" /> -->
   <!-- <Todos></Todos> -->
   <!-- vue-router4中keep-alive用法 -->
@@ -17,6 +17,7 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Todos from './components/todos/Todos.vue'
+import { toRefs } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -29,7 +30,7 @@ export default {
     const store = useStore()
     console.log(store);
     return{
-      state: store.state,
+      ...toRefs(store.state),
       add: ()=>{
         store.commit('add')
       }
