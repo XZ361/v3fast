@@ -1,5 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
+  <!-- vite中ts用法 -->
+  <Comps></Comps>
   <!-- 传统写法 -->
   <p @click="$store.commit('add')">{{$store.state.count}}</p>
   <!-- composition api 写法 -->
@@ -19,13 +21,15 @@ import HelloWorld from './components/HelloWorld.vue'
 import Todos from './components/todos/Todos.vue'
 import { toRefs } from "vue";
 import { useStore } from "vuex";
+import Comps from './components/Comps.vue';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    Todos
-  },
+    Todos,
+    Comps
+},
   setup(){
     const store = useStore()
     console.log(store);
